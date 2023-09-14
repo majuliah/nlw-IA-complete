@@ -3,6 +3,25 @@ GET http://localhost:3333/prompts
 
 ###
 
-# @name get-videos
-GET http://localhost:3333/videos
+# @name upload
+POST http://localhost:3333/videos
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="example.mp3" 
+Content-Type: audio/mpeg
+
+./example.mp3
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+###
+
+# @name create-transcription
+
+POST http://localhost:3333/videos/38c4ee1b-bb9b-41f9-8029-1fa9cd0e6b68/transcription
+Content-Type: application/json
+
+{
+    "prompt": "erupcao, tempestade, espaço, raios"
+}
