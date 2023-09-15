@@ -1,14 +1,21 @@
 import { fastify } from "fastify";
 import { prisma } from "./lib/prisma";
+import { fastifyCors } from "@fastify/cors";
 import { getAllPromptsRoute } from "./routes/get-all-prompts";
 import { uploadVideoRoute } from "./routes/upload-video";
-import { createTranscriptionRout } from "./routes/create-trasncription";
+import { createTranscriptionRoute } from "./routes/create-trasncription";
+import { generateAICompletionRoute } from "./routes/generate-ai-completion";
 
 const app = fastify();
 
+app.register(fastifyCors, {
+    origin: '*',
+})
+
 app.register(getAllPromptsRoute);
 app.register(uploadVideoRoute);
-app.register(createTranscriptionRout);
+app.register(createTranscriptionRoute);
+app.register(generateAICompletionRoute);
 
 app.listen({
     port: 3333,

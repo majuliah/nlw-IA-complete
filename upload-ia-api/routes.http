@@ -11,7 +11,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 Content-Disposition: form-data; name="file"; filename="example.mp3" 
 Content-Type: audio/mpeg
 
-./example.mp3
+< ./example.mp3
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 
@@ -19,9 +19,23 @@ Content-Type: audio/mpeg
 
 # @name create-transcription
 
-POST http://localhost:3333/videos/38c4ee1b-bb9b-41f9-8029-1fa9cd0e6b68/transcription
+POST http://localhost:3333/videos/1ab0082f-2890-4f09-8a13-357bbae13e09/transcription
 Content-Type: application/json
 
 {
-    "prompt": "erupcao, tempestade, espaço, raios"
+    "prompt": "erupcao, tempestade, raios"
+}
+
+
+###
+
+# @name generate-ai-transcription
+
+POST http://localhost:3333/ai/complete
+Content-Type: application/json
+
+{
+    "videoId": "1ab0082f-2890-4f09-8a13-357bbae13e09",
+    "temperature": 0.5,
+    "template": "gere um resumo sucinto da transcrição do vídeo informada a seguir: '''{transcription}''' "
 }
