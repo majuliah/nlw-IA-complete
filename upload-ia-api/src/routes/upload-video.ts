@@ -48,5 +48,4 @@ export async function uploadVideoRoute(app: FastifyInstance){
             video,
         };
     });
-    
 }
